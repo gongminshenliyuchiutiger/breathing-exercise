@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>神呼吸計鍊習系統</title>
+    <!-- Google Fonts: Outfit & Noto Sans TC -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6.4.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- 引入自訂樣式表 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 背景動態光暈效果 -->
+    <div class="aurora-glow-container">
+        <div class="aurora-glow glow-1"></div>
+        <div class="aurora-glow glow-2"></div>
+        <div class="aurora-glow glow-3"></div>
+    </div>
+
+    <!-- 主應用程式容器 -->
+    <div class="app-container">
+        <!-- 頂部頂欄 -->
+        <header class="app-header">
+            <div class="logo-area">
+                <i class="fa-solid fa-wind logo-icon"></i>
+                <div class="logo-text">
+                    <h1>神呼吸計鍊習系統</h1>
+                    <span class="sub-title">尋找內心的寧靜與專注</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button id="theme-toggle" class="header-btn" title="切換背景風格">
+                    <i class="fa-solid fa-palette"></i>
+                </button>
+                <button id="sound-master-btn" class="header-btn" title="全域靜音">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 主要內容區域 -->
+        <main class="app-main">
+            <!-- 左側：控制與設定面板 -->
+            <section class="control-panel glass-panel">
+                <div class="panel-section">
+                    <h2><i class="fa-solid fa-sliders section-icon"></i> 呼吸模式設定</h2>
+                    <div class="mode-options">
+                        <!-- 4-7-8 -->
+                        <button class="mode-card active" data-mode="478">
+                            <div class="mode-card-header">
+                                <span class="mode-title">4-7-8 助眠呼吸法</span>
+                                <span class="mode-tag tag-sleep">放鬆助眠</span>
+                            </div>
+                            <p class="mode-desc">吸氣 4 秒、屏氣 7 秒、吐氣 8 秒。能極速舒緩緊張焦慮，幫助進入放鬆與睡眠狀態。</p>
+                            <div class="mode-steps">
+                                <span class="step"><i class="fa-solid fa-arrow-up-right"></i> 吸 4s</span>
+                                <span class="step"><i class="fa-solid fa-circle"></i> 屏 7s</span>
+                                <span class="step"><i class="fa-solid fa-arrow-down-left"></i> 吐 8s</span>
+                            </div>
+                        </button>
+
+                        <!-- Box -->
+                        <button class="mode-card" data-mode="box">
+                            <div class="mode-card-header">
+                                <span class="mode-title">Box 等比呼吸法</span>
+                                <span class="mode-tag tag-focus">專注減壓</span>
+                            </div>
+                            <p class="mode-desc">吸氣 4 秒、屏氣 4 秒、吐氣 4 秒、屏氣 4 秒。美國海豹部隊常用，用以提升專注度並保持冷靜。</p>
+                            <div class="mode-steps">
+                                <span class="step"><i class="fa-solid fa-arrow-up-right"></i> 吸 4s</span>
+                                <span class="step"><i class="fa-solid fa-circle"></i> 屏 4s</span>
+                                <span class="step"><i class="fa-solid fa-arrow-down-left"></i> 吐 4s</span>
+                                <span class="step"><i class="fa-solid fa-circle"></i> 屏 4s</span>
+                            </div>
+                        </button>
+
+                        <!-- 5-5 -->
+                        <button class="mode-card" data-mode="abdominal">
+                            <div class="mode-card-header">
+                                <span class="mode-title">5-5 腹式呼吸法</span>
+                                <span class="mode-tag tag-calm">日常保健</span>
+                            </div>
+                            <p class="mode-desc">吸氣 5 秒、吐氣 5 秒。最自然平穩的呼吸節奏，能調節自律神經，平衡身心狀態。</p>
+                            <div class="mode-steps">
+                                <span class="step"><i class="fa-solid fa-arrow-up-right"></i> 吸 5s</span>
+                                <span class="step"><i class="fa-solid fa-arrow-down-left"></i> 吐 5s</span>
+                            </div>
+                        </button>
+
+                        <!-- 二吸一吐 (生理性嘆息) -->
+                        <button class="mode-card" data-mode="sigh">
+                            <div class="mode-card-header">
+                                <span class="mode-title">二吸一吐 生理性嘆息</span>
+                                <span class="mode-tag tag-sigh">快速減壓</span>
+                            </div>
+                            <p class="mode-desc">快速深吸兩口氣（大吸加小補吸），再緩慢吐氣。是人體最快重設神經系統、平息恐慌的自然呼吸法。</p>
+                            <div class="mode-steps">
+                                <span class="step"><i class="fa-solid fa-arrow-up-right"></i> 吸 1.5s</span>
+                                <span class="step"><i class="fa-solid fa-angles-up"></i> 補吸 1s</span>
+                                <span class="step"><i class="fa-solid fa-arrow-down-left"></i> 吐 5.5s</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 中央：呼吸計時與引導器 -->
+            <section class="breathing-display-panel">
+                <div class="breathing-center-container">
+                    <!-- 呼吸環的外圍波浪發光效果 -->
+                    <div class="breathing-glow-ring"></div>
+                    
+                    <!-- 呼吸核心環 -->
+                    <div id="breathing-ring" class="breathing-ring-element hold-state">
+                        <!-- 新增：看得出倒數時間的動態圓形進度環 SVG -->
+                        <svg class="ring-progress-svg" viewBox="0 0 100 100">
+                            <circle class="ring-progress-bg" cx="50" cy="50" r="46"></circle>
+                            <circle id="ring-progress-bar" class="ring-progress-bar" cx="50" cy="50" r="46"></circle>
+                        </svg>
+
+                        <!-- 內置呼吸文字內容 -->
+                        <div class="inner-circle">
+                            <div class="circle-content">
+                                <span id="breathing-status" class="breathing-status-text">準備就緒</span>
+                                <span id="breathing-timer" class="breathing-timer-text">0.0</span>
+                                <span id="breathing-subtext" class="breathing-subtext-text">點擊下方按鈕開始</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 練習時長移到中間區塊，位於按鈕上方，顯得更加直覺與勻稱 -->
+                <div class="mid-duration-section">
+                    <span class="duration-title"><i class="fa-solid fa-hourglass-half"></i> 選擇練習時間：</span>
+                    <div class="duration-options">
+                        <button class="duration-btn active" data-duration="60">1 分鐘</button>
+                        <button class="duration-btn" data-duration="300">5 分鐘</button>
+                        <button class="duration-btn" data-duration="infinite">無限制</button>
+                        <button class="duration-btn" data-duration="custom" id="custom-duration-btn">自訂</button>
+                    </div>
+                    <!-- 平滑展開的自訂時長輸入區：調整為分秒輸入 -->
+                    <div id="custom-duration-input-wrapper" class="custom-duration-wrapper">
+                        <input type="number" id="custom-duration-min" min="0" max="120" step="1" value="1" placeholder="分">
+                        <span class="input-unit">分</span>
+                        <input type="number" id="custom-duration-sec" min="0" max="59" step="5" value="0" placeholder="秒">
+                        <span class="input-unit">秒</span>
+                        <button id="custom-duration-apply-btn" class="custom-apply-btn">確認</button>
+                    </div>
+                </div>
+
+                <div class="breathing-controls">
+                    <button id="start-pause-btn" class="main-action-btn pulse-effect">
+                        <i class="fa-solid fa-play"></i> <span>開始練習</span>
+                    </button>
+                    <button id="reset-btn" class="secondary-action-btn" disabled>
+                        <i class="fa-solid fa-rotate-left"></i> <span>重設</span>
+                    </button>
+                </div>
+                
+                <div class="progress-bar-container">
+                    <div id="exercise-progress" class="progress-bar-fill"></div>
+                </div>
+                <div class="time-elapsed-display">
+                    <span id="time-current">00:00</span>
+                    <span id="time-total">/ 01:00</span>
+                </div>
+            </section>
+
+            <section class="ambient-panel glass-panel">
+                <div class="panel-section">
+                    <h2><i class="fa-solid fa-music section-icon"></i> 環境自然白噪音</h2>
+                    <div class="ambient-tracks">
+                        <!-- 森林雨聲 -->
+                        <div class="track-card" data-track="rain">
+                            <div class="track-info">
+                                <i class="fa-solid fa-cloud-showers-water track-icon"></i>
+                                <div class="track-meta">
+                                    <span class="track-name">森林雨聲</span>
+                                    <span class="track-status">已關閉</span>
+                                </div>
+                            </div>
+                            <div class="track-control-row">
+                                <button class="track-toggle-btn"><i class="fa-solid fa-play"></i></button>
+                                <div class="volume-slider-wrapper">
+                                    <i class="fa-solid fa-volume-low"></i>
+                                    <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5" style="--percent: 50%;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 平靜海浪 -->
+                        <div class="track-card" data-track="waves">
+                            <div class="track-info">
+                                <i class="fa-solid fa-water track-icon"></i>
+                                <div class="track-meta">
+                                    <span class="track-name">平靜海浪</span>
+                                    <span class="track-status">已關閉</span>
+                                </div>
+                            </div>
+                            <div class="track-control-row">
+                                <button class="track-toggle-btn"><i class="fa-solid fa-play"></i></button>
+                                <div class="volume-slider-wrapper">
+                                    <i class="fa-solid fa-volume-low"></i>
+                                    <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5" style="--percent: 50%;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 篝火微風 -->
+                        <div class="track-card" data-track="fire">
+                            <div class="track-info">
+                                <i class="fa-solid fa-fire track-icon"></i>
+                                <div class="track-meta">
+                                    <span class="track-name">篝火微風</span>
+                                    <span class="track-status">已關閉</span>
+                                </div>
+                            </div>
+                            <div class="track-control-row">
+                                <button class="track-toggle-btn"><i class="fa-solid fa-play"></i></button>
+                                <div class="volume-slider-wrapper">
+                                    <i class="fa-solid fa-volume-low"></i>
+                                    <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5" style="--percent: 50%;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 夏日微風 (Summer Breeze) -->
+                        <div class="track-card" data-track="breeze">
+                            <div class="track-info">
+                                <i class="fa-solid fa-wind track-icon"></i>
+                                <div class="track-meta">
+                                    <span class="track-name">夏日微風</span>
+                                    <span class="track-status">已關閉</span>
+                                </div>
+                            </div>
+                            <div class="track-control-row">
+                                <button class="track-toggle-btn"><i class="fa-solid fa-play"></i></button>
+                                <div class="volume-slider-wrapper">
+                                    <i class="fa-solid fa-volume-low"></i>
+                                    <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5" style="--percent: 50%;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 鳥鳴溪流 (Birds & Stream) -->
+                        <div class="track-card" data-track="stream">
+                            <div class="track-info">
+                                <i class="fa-solid fa-dove track-icon"></i>
+                                <div class="track-meta">
+                                    <span class="track-name">鳥鳴溪流</span>
+                                    <span class="track-status">已關閉</span>
+                                </div>
+                            </div>
+                            <div class="track-control-row">
+                                <button class="track-toggle-btn"><i class="fa-solid fa-play"></i></button>
+                                <div class="volume-slider-wrapper">
+                                    <i class="fa-solid fa-volume-low"></i>
+                                    <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.5" style="--percent: 50%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 底部版權宣告 (Footer) -->
+        <footer class="app-footer">
+            <p>Copyright &copy; Liyuchiutiger Gongminshen</p>
+        </footer>
+    </div>
+
+    <!-- 吉祥物 Liyu Chill Guy 容器 -->
+    <div id="mascot-container" class="mascot-wrapper" title="我是 Liyu Chill Guy！我可以被拖曳到任何地方喔！">
+        <div class="mascot-glow-effect"></div>
+        <img src="image/LiyuChillGuy.svg" alt="LiyuChillGuy Mascot" class="mascot-image" id="mascot-img" draggable="false">
+    </div>
+
+    <!-- 載入自訂邏輯控制 -->
+    <script src="script.js"></script>
+</body>
+</html>

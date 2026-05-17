@@ -1,0 +1,1182 @@
+/* ==========================================================================
+   神呼吸計鍊習系統 - 主樣式表 (更新版)
+   設計風格：深色極光毛玻璃微光風格 (Dark Aurora Glassmorphism)
+   語言：繁體中文
+   ========================================================================== */
+
+/* 變數定義 */
+:root {
+    /* 漸變與色彩系統 */
+    --bg-primary: #050508;
+    --bg-secondary: #0a0b12;
+    
+    --color-text-main: #f3f4f6;
+    --color-text-muted: #9ca3af;
+    --color-text-dark: #1f2937;
+    
+    /* 呼吸狀態配色：翡翠冰藍 -> 湛藍 (大氣呼吸) */
+    --accent-inhale-start: #00f2fe;
+    --accent-inhale-end: #3b82f6;
+    /* 補吸氣狀態配色：晨光白藍 */
+    --accent-inhale2-start: #38bdf8;
+    --accent-inhale2-end: #e0f2fe;
+    /* 屏氣狀態配色：溫暖曦金 */
+    --accent-hold-start: #f59e0b;
+    --accent-hold-end: #fbbf24;
+    /* 吐氣狀態配色：暮色珊瑚粉 */
+    --accent-exhale-start: #ec4899;
+    --accent-exhale-end: #f43f5e;
+    
+    /* 呼吸狀態外發光色彩變數 */
+    --glow-inhale: rgba(0, 242, 254, 0.45);
+    --glow-inhale2: rgba(56, 189, 248, 0.55);
+    --glow-hold: rgba(245, 158, 11, 0.45);
+    --glow-exhale: rgba(244, 63, 94, 0.45);
+    
+    /* 預設皇家極光主題色彩 (Royal Aurora) */
+    --theme-primary: #8b5cf6;
+    --theme-secondary: #d946ef;
+    --theme-glow: rgba(139, 92, 246, 0.4);
+    
+    /* 毛玻璃屬性 - 帶有皇家紫色調微光 */
+    --glass-bg: rgba(10, 11, 20, 0.7);
+    --glass-border: rgba(139, 92, 246, 0.12);
+    --glass-shadow: rgba(0, 0, 0, 0.45);
+    
+    /* 互動組件動態感應變數 */
+    --card-active-bg: rgba(139, 92, 246, 0.08);
+    --card-active-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+    --step-active-bg: rgba(139, 92, 246, 0.15);
+    --btn-glow: rgba(139, 92, 246, 0.35);
+    --btn-glow-hover: rgba(139, 92, 246, 0.5);
+    
+    --track-active-bg: rgba(217, 70, 239, 0.06);
+    --track-active-border: rgba(217, 70, 239, 0.3);
+    
+    --custom-apply-glow: rgba(217, 70, 239, 0.2);
+    --custom-apply-glow-hover: rgba(217, 70, 239, 0.4);
+    --custom-apply-hover-bg: #c084fc;
+    
+    /* 動畫過渡 */
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-fast: all 0.2s ease;
+}
+
+/* 替代主題定義 (深海星雲藍綠主題 - Cosmic Nebula) */
+body.cosmic-theme {
+    --bg-primary: #020617;
+    --bg-secondary: #0b1329;
+    --theme-primary: #0ea5e9;
+    --theme-secondary: #10b981;
+    --theme-glow: rgba(14, 165, 233, 0.4);
+    --glass-bg: rgba(7, 15, 33, 0.75);
+    --glass-border: rgba(14, 165, 233, 0.12);
+    --glass-shadow: rgba(0, 0, 0, 0.45);
+    
+    --card-active-bg: rgba(14, 165, 233, 0.08);
+    --card-active-shadow: 0 4px 20px rgba(14, 165, 233, 0.15);
+    --step-active-bg: rgba(14, 165, 233, 0.15);
+    --btn-glow: rgba(14, 165, 233, 0.35);
+    --btn-glow-hover: rgba(14, 165, 233, 0.5);
+    
+    --track-active-bg: rgba(16, 185, 129, 0.06);
+    --track-active-border: rgba(16, 185, 129, 0.3);
+    
+    --custom-apply-glow: rgba(16, 185, 129, 0.2);
+    --custom-apply-glow-hover: rgba(16, 185, 129, 0.4);
+    --custom-apply-hover-bg: #34d399;
+}
+
+/* 替代主題定義 (空靈綠意森林主題 - Zen Forest) */
+body.forest-theme {
+    --bg-primary: #020806;
+    --bg-secondary: #05140f;
+    --theme-primary: #10b981;
+    --theme-secondary: #059669;
+    --theme-glow: rgba(16, 185, 129, 0.4);
+    --glass-bg: rgba(3, 15, 10, 0.75);
+    --glass-border: rgba(16, 185, 129, 0.12);
+    --glass-shadow: rgba(0, 0, 0, 0.45);
+    
+    --card-active-bg: rgba(16, 185, 129, 0.08);
+    --card-active-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
+    --step-active-bg: rgba(16, 185, 129, 0.15);
+    --btn-glow: rgba(16, 185, 129, 0.35);
+    --btn-glow-hover: rgba(16, 185, 129, 0.5);
+    
+    --track-active-bg: rgba(5, 150, 105, 0.06);
+    --track-active-border: rgba(5, 150, 105, 0.3);
+    
+    --custom-apply-glow: rgba(5, 150, 105, 0.2);
+    --custom-apply-glow-hover: rgba(5, 150, 105, 0.4);
+    --custom-apply-hover-bg: #059669;
+}
+
+/* 全域重設與基礎樣式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--color-text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+/* ==========================================================================
+   背景動態極光光暈 (Aurora Glows)
+   ========================================================================== */
+.aurora-glow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.aurora-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.15;
+    mix-blend-mode: screen;
+    animation: floatGlow 20s infinite alternate ease-in-out;
+}
+
+.glow-1 {
+    top: -10%;
+    left: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, var(--theme-primary) 0%, transparent 70%);
+}
+
+.glow-2 {
+    bottom: -20%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, var(--theme-secondary) 0%, transparent 70%);
+    animation-delay: -5s;
+    animation-duration: 25s;
+}
+
+.glow-3 {
+    top: 30%;
+    left: 40%;
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle, var(--accent-inhale-start) 0%, transparent 70%);
+    opacity: 0.08;
+    animation-delay: -10s;
+    animation-duration: 18s;
+}
+
+@keyframes floatGlow {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        transform: translate(8%, 10%) scale(1.15);
+    }
+}
+
+/* ==========================================================================
+   主應用結構
+   ========================================================================== */
+.app-container {
+    position: relative;
+    z-index: 2;
+    width: 95%;
+    max-width: 1400px;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 24px;
+}
+
+/* 頂部頂欄 */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 28px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px var(--glass-shadow);
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo-icon {
+    font-size: 2rem;
+    background: linear-gradient(135deg, var(--accent-inhale-start), var(--theme-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 8px var(--theme-glow));
+    animation: breatheLogo 4s infinite ease-in-out;
+}
+
+.logo-text h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, #ffffff, #e2e8f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo-text .sub-title {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    letter-spacing: 2px;
+}
+
+@keyframes breatheLogo {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 4px 12px var(--theme-glow)); }
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.header-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--color-text-main);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition-fast);
+}
+
+.header-btn:hover {
+    background: var(--theme-primary);
+    border-color: var(--theme-primary);
+    box-shadow: 0 0 15px var(--theme-glow);
+    transform: translateY(-2px);
+}
+
+.header-btn:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   主要內容佈局
+   ========================================================================== */
+.app-main {
+    display: grid;
+    grid-template-columns: 340px 1fr 340px;
+    gap: 24px;
+    flex-grow: 1;
+}
+
+@media (max-width: 1200px) {
+    .app-main {
+        grid-template-columns: 1fr;
+    }
+    
+    .control-panel, .ambient-panel {
+        max-height: none !important;
+    }
+}
+
+/* 通用毛玻璃面板 */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: var(--glass-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: var(--transition-smooth);
+}
+
+.panel-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-section h2 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--color-text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-left: 4px solid var(--theme-primary);
+    padding-left: 10px;
+}
+
+.section-icon {
+    color: var(--theme-primary);
+}
+
+/* ==========================================================================
+   左側：呼吸模式設定
+   ========================================================================== */
+.mode-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 列表自訂滑動條 */
+.mode-options::-webkit-scrollbar,
+.ambient-tracks::-webkit-scrollbar {
+    width: 4px;
+}
+
+.mode-options::-webkit-scrollbar-track,
+.ambient-tracks::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.mode-options::-webkit-scrollbar-thumb,
+.ambient-tracks::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+}
+
+.mode-options::-webkit-scrollbar-thumb:hover,
+.ambient-tracks::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-secondary);
+}
+
+.mode-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    padding: 10px 14px;
+    cursor: pointer;
+    text-align: left;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mode-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.mode-card.active {
+    background: var(--card-active-bg);
+    border-color: var(--theme-primary);
+    box-shadow: var(--card-active-shadow);
+}
+
+.mode-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mode-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+}
+
+.mode-tag {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.tag-sleep { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+.tag-focus { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+.tag-calm { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+.tag-sigh { background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.3); }
+
+.mode-desc {
+    font-size: 0.74rem;
+    color: var(--color-text-muted);
+    line-height: 1.3;
+}
+
+.mode-steps {
+    display: flex;
+    gap: 4px;
+    margin-top: 2px;
+    flex-wrap: wrap;
+}
+
+.mode-steps .step {
+    font-size: 0.68rem;
+    padding: 1px 5px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.mode-card.active .mode-steps .step {
+    background: var(--step-active-bg);
+    color: var(--color-text-main);
+}
+
+/* ==========================================================================
+   中央：呼吸計時顯示器
+   ========================================================================== */
+.breathing-display-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(10, 14, 23, 0.4);
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 20px 24px;
+    position: relative;
+}
+
+.breathing-center-container {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+/* 呼吸發光外環 */
+.breathing-glow-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px dashed rgba(255, 255, 255, 0.05);
+    transition: var(--transition-smooth);
+}
+
+/* 呼吸核心環主元素 */
+.breathing-ring-element {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+/* 看得出倒數時間的 SVG 進度色環樣式 */
+.ring-progress-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg); 
+    z-index: 1;
+    pointer-events: none;
+}
+
+.ring-progress-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.03);
+    stroke-width: 3.5;
+}
+
+.ring-progress-bar {
+    fill: none;
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    stroke-dasharray: 289;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.1s linear, stroke 0.4s ease;
+}
+
+/* 呼吸色環依不同呼吸狀態之色彩及發光漸變 */
+.inhale-state .ring-progress-bar {
+    stroke: var(--accent-inhale-start);
+    filter: drop-shadow(0 0 5px var(--accent-inhale-start));
+}
+
+.inhale2-state .ring-progress-bar {
+    stroke: var(--accent-inhale2-end);
+    filter: drop-shadow(0 0 6px var(--accent-inhale2-end));
+}
+
+.hold-state .ring-progress-bar {
+    stroke: var(--accent-hold-start);
+    filter: drop-shadow(0 0 5px var(--accent-hold-start));
+}
+
+.exhale-state .ring-progress-bar {
+    stroke: var(--accent-exhale-start);
+    filter: drop-shadow(0 0 5px var(--accent-exhale-start));
+}
+
+/* 內層實心圈 */
+.inner-circle {
+    position: absolute;
+    width: 88%;
+    height: 88%;
+    border-radius: 50%;
+    background: rgba(10, 14, 23, 0.88);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.circle-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+}
+
+.breathing-status-text {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    transition: var(--transition-fast);
+}
+
+.breathing-timer-text {
+    font-size: 2.6rem;
+    font-weight: 300;
+    font-variant-numeric: tabular-nums;
+    font-family: 'Outfit', sans-serif;
+    color: var(--color-text-main);
+    line-height: 1;
+}
+
+.breathing-subtext-text {
+    font-size: 0.74rem;
+    color: var(--color-text-muted);
+    letter-spacing: 1px;
+    max-width: 160px;
+}
+
+/* --- 呼吸四大狀態 CSS 特效 --- */
+
+/* 1. 吸氣狀態一：膨脹、翡翠青綠發光 */
+.breathing-ring-element.inhale-state {
+    transform: scale(1.18);
+    background: linear-gradient(135deg, var(--accent-inhale-start), var(--accent-inhale-end));
+    box-shadow: 0 0 60px var(--glow-inhale);
+}
+.breathing-ring-element.inhale-state .breathing-status-text {
+    color: #a5f3fc;
+}
+
+/* 2. 吸氣狀態二 (生理性嘆息補吸氣)：最大膨脹、極光青藍發光 */
+.breathing-ring-element.inhale2-state {
+    transform: scale(1.3);
+    background: linear-gradient(135deg, var(--accent-inhale2-start), var(--accent-inhale2-end));
+    box-shadow: 0 0 70px var(--glow-inhale2);
+}
+.breathing-ring-element.inhale2-state .breathing-status-text {
+    color: #e0f2fe;
+}
+
+/* 3. 屏氣狀態：靜止最大、金黃發光 */
+.breathing-ring-element.hold-state {
+    background: linear-gradient(135deg, var(--accent-hold-start), var(--accent-hold-end));
+    box-shadow: 0 0 60px var(--glow-hold);
+}
+.breathing-ring-element.hold-state .breathing-status-text {
+    color: #fef08a;
+}
+
+/* 4. 吐氣狀態：收縮、珊瑚粉發光 */
+.breathing-ring-element.exhale-state {
+    transform: scale(0.88);
+    background: linear-gradient(135deg, var(--accent-exhale-start), var(--accent-exhale-end));
+    box-shadow: 0 0 45px var(--glow-exhale);
+}
+.breathing-ring-element.exhale-state .breathing-status-text {
+    color: #fecdd3;
+}
+
+/* 中間移入的練習時長樣式 */
+.mid-duration-section {
+    width: 85%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 8px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.duration-title {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 1px;
+}
+
+.mid-duration-section .duration-options {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+/* --- 改良：時間選擇按鈕樣式與高亮變色發光特效 --- */
+.mid-duration-section .duration-btn {
+    padding: 8px 4px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    border-radius: 10px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.mid-duration-section .duration-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: var(--color-text-main);
+    transform: translateY(-1px);
+}
+
+/* 核心變色：選中高亮狀態 */
+.mid-duration-section .duration-btn.active {
+    background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
+    border-color: transparent;
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 4px 15px var(--theme-glow);
+    transform: scale(1.05);
+}
+
+.mid-duration-section .duration-btn.active:hover {
+    box-shadow: 0 4px 20px var(--theme-glow);
+    transform: scale(1.05) translateY(-1px);
+}
+
+/* 自訂時長輸入區展開動畫 */
+.custom-duration-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-top: 0;
+}
+
+.custom-duration-wrapper.show {
+    max-height: 52px;
+    opacity: 1;
+    margin-top: 12px;
+}
+
+/* 分與秒兩個小寬度數字框樣式 */
+#custom-duration-min,
+#custom-duration-sec {
+    width: 65px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-text-main);
+    font-size: 0.82rem;
+    font-weight: 600;
+    outline: none;
+    text-align: center;
+    font-family: 'Outfit', sans-serif;
+    transition: var(--transition-fast);
+}
+
+#custom-duration-min:focus,
+#custom-duration-sec:focus {
+    border-color: var(--theme-secondary);
+    box-shadow: 0 0 8px rgba(236, 72, 153, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+#custom-duration-min::-webkit-outer-spin-button,
+#custom-duration-min::-webkit-inner-spin-button,
+#custom-duration-sec::-webkit-outer-spin-button,
+#custom-duration-sec::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input-unit {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+.custom-apply-btn {
+    padding: 6px 14px;
+    border-radius: 8px;
+    background: var(--theme-secondary);
+    color: #ffffff;
+    border: none;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    box-shadow: 0 2px 6px var(--custom-apply-glow);
+}
+
+.custom-apply-btn:hover {
+    background: var(--custom-apply-hover-bg);
+    box-shadow: 0 2px 10px var(--custom-apply-glow-hover);
+    transform: translateY(-1px);
+}
+
+.custom-apply-btn:active {
+    transform: translateY(0);
+}
+
+/* 控制按鈕區 */
+.breathing-controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    z-index: 5;
+}
+
+.main-action-btn {
+    padding: 10px 22px;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
+    color: #ffffff;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 6px 20px var(--btn-glow);
+    transition: var(--transition-smooth);
+}
+
+.main-action-btn:hover {
+    box-shadow: 0 6px 25px var(--btn-glow-hover);
+    transform: translateY(-2px);
+}
+
+.main-action-btn:active {
+    transform: translateY(0);
+}
+
+.secondary-action-btn {
+    padding: 10px 18px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-main);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition-fast);
+}
+
+.secondary-action-btn:hover:not([disabled]) {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.secondary-action-btn[disabled] {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* 呼吸主進度條 */
+.progress-bar-container {
+    width: 80%;
+    max-width: 400px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary));
+    border-radius: 10px;
+    transition: width 0.1s linear;
+}
+
+.time-elapsed-display {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   右側：環境音效與白噪音
+   ========================================================================== */
+.ambient-tracks {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: calc(100vh - 280px);
+}
+
+.track-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    transition: var(--transition-smooth);
+}
+
+.track-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.track-card.active {
+    background: var(--track-active-bg);
+    border-color: var(--track-active-border);
+}
+
+.track-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    width: 95px;
+}
+
+.track-icon {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    width: 20px;
+    text-align: center;
+    transition: var(--transition-fast);
+}
+
+.track-card.active .track-icon {
+    color: var(--theme-secondary);
+    animation: pulseIcon 2s infinite ease-in-out;
+}
+
+@keyframes pulseIcon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); filter: drop-shadow(0 0 5px var(--theme-secondary)); }
+}
+
+.track-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.track-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.track-status {
+    display: none; /* 隱藏狀態文字，節省垂直空間 */
+}
+
+.track-control-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+.track-toggle-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--color-text-main);
+    font-size: 0.7rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.track-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.track-card.active .track-toggle-btn {
+    background: var(--theme-secondary);
+    border-color: var(--theme-secondary);
+    color: #ffffff;
+}
+
+.volume-slider-wrapper {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-text-muted);
+    font-size: 0.7rem;
+    max-width: 100px;
+}
+
+.volume-slider-wrapper i {
+    font-size: 0.65rem;
+}
+
+/* 音量條雙色填滿效果 */
+.volume-slider {
+    flex-grow: 1;
+    height: 6px;
+    background: linear-gradient(
+        to right, 
+        var(--theme-secondary) 0%, 
+        var(--theme-secondary) var(--percent, 50%), 
+        rgba(255, 255, 255, 0.12) var(--percent, 50%), 
+        rgba(255, 255, 255, 0.12) 100%
+    );
+    border-radius: 10px;
+    outline: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    transition: background 0.1s ease;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid var(--theme-secondary);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    margin-top: 0px;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.35);
+    box-shadow: 0 0 8px var(--theme-secondary);
+}
+
+.track-card.active .volume-slider::-webkit-slider-thumb {
+    background: #ffffff;
+    border-color: var(--theme-secondary);
+}
+
+/* ==========================================================================
+   吉祥物 Liyu Chill Guy (Universal Draggable & Neon Glow Hover)
+   ========================================================================== */
+.mascot-wrapper {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 999;
+    cursor: grab;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.15s ease-out;
+}
+
+/* 拖曳中的手勢 */
+.mascot-wrapper:active {
+    cursor: grabbing;
+}
+
+/* 拖曳中的樣式微調 */
+.mascot-wrapper.dragging {
+    transform: scale(1.08) rotate(3deg);
+    transition: none;
+}
+
+/* 吉祥物發光環 */
+.mascot-glow-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--theme-glow) 0%, transparent 70%);
+    opacity: 0;
+    transition: var(--transition-smooth);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* 吉祥物本體圖像 */
+.mascot-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    transition: var(--transition-smooth);
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+    pointer-events: none;
+}
+
+/* 懸停 (Hover) 特效：霓虹發光與抖動 */
+.mascot-wrapper:hover .mascot-image {
+    animation: 
+        neonGlow 3s infinite linear,
+        jiggle 0.4s infinite linear;
+}
+
+.mascot-wrapper:hover .mascot-glow-effect {
+    opacity: 0.8;
+}
+
+/* 霓虹彩色發光動畫 */
+@keyframes neonGlow {
+    0% {
+        filter: drop-shadow(0 0 12px #ff007f) drop-shadow(0 0 25px rgba(255, 0, 127, 0.4));
+    }
+    14% {
+        filter: drop-shadow(0 0 12px #7f00ff) drop-shadow(0 0 25px rgba(127, 0, 255, 0.4));
+    }
+    28% {
+        filter: drop-shadow(0 0 12px #0000ff) drop-shadow(0 0 25px rgba(0, 0, 255, 0.4));
+    }
+    42% {
+        filter: drop-shadow(0 0 12px #00ffff) drop-shadow(0 0 25px rgba(0, 255, 255, 0.4));
+    }
+    56% {
+        filter: drop-shadow(0 0 12px #00ff00) drop-shadow(0 0 25px rgba(0, 255, 0, 0.4));
+    }
+    70% {
+        filter: drop-shadow(0 0 12px #ffff00) drop-shadow(0 0 25px rgba(255, 255, 0, 0.4));
+    }
+    84% {
+        filter: drop-shadow(0 0 12px #ff7f00) drop-shadow(0 0 25px rgba(255, 127, 0, 0.4));
+    }
+    100% {
+        filter: drop-shadow(0 0 12px #ff007f) drop-shadow(0 0 25px rgba(255, 0, 127, 0.4));
+    }
+}
+
+/* 抖動/震動動畫 (Jiggle/Shake) */
+@keyframes jiggle {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    10% { transform: translate(-2px, -2px) rotate(-1.5deg); }
+    20% { transform: translate(2px, 1px) rotate(1.5deg); }
+    30% { transform: translate(-1px, 2px) rotate(-0.8deg); }
+    40% { transform: translate(1px, -1px) rotate(0.8deg); }
+    50% { transform: translate(-2px, 1px) rotate(-1.5deg); }
+    60% { transform: translate(2px, -1px) rotate(1.5deg); }
+    70% { transform: translate(-1px, -2px) rotate(-0.8deg); }
+    80% { transform: translate(1px, 2px) rotate(0.8deg); }
+    90% { transform: translate(-1px, 1px) rotate(-0.5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* ==========================================================================
+   頁腳 (Footer)
+   ========================================================================== */
+.app-footer {
+    text-align: center;
+    padding: 16px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 2;
+}
+
+.app-footer p {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    letter-spacing: 1px;
+}
+
+/* 網頁滾動條樣式優化 */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-primary);
+}
